@@ -17,13 +17,34 @@ public class Library {
 		registeredBorrowers = new HashSet<Borrower>();
 	}
 	
-	public void registerOneBorrower(String name,int studentNumber){
-		Borrower p = new Borrower(name, studentNumber);
+	public void registerOneBorrower(String name,int borrowerNumber){
+		Iterator iter = registeredBorrowers.iterator();
+		while(iter.hasNext()== true){
+			Borrower borrower =(Borrower)iter.next();
+			if(borrower.equals(name)){
+				System.out.println("이미 등록되어있는 이용자입니다");
+				break;
+			}
+				
+		}
+		Borrower p = new Borrower(name, borrowerNumber);
 		registeredBorrowers.add(p);
-	}
-	public void registerOneBook(String title, String author, int catalogueNumber){
+		System.out.println("등록에 성공하였습니다.");
+	
+		}
+	public void registerOneBook(String title, String author,int catalogueNumber ){
+		Iterator iter = registeredBooks.iterator();
+		while(iter.hasNext()== true){
+			Book book =(Book)iter.next();
+			if(book.equals(title)){
+				catalogueNumber += 1 ;
+			}
+			else{
+				
+			}
 		Book b = new Book(title, author, catalogueNumber);
 		registeredBooks.add(b);
+	}
 	}
 	public void displayBooksForLoan(){
 		Iterator iter = registeredBooks.iterator();
@@ -37,8 +58,8 @@ public class Library {
 		Iterator iter = registeredBooks.iterator();
 		while(iter.hasNext()== true){
 			Book book =(Book)iter.next();
-			//null 대신 어떤 값을 너어야 하는지 알아보기
-			if(book.getBorrower() == null)
+			
+			if(book.getBorrower() != null)
 				book.display();
 		}
 	}
@@ -46,7 +67,9 @@ public class Library {
 		Iterator iter = registeredBorrowers.iterator();
 		while(iter.hasNext() == true){
 			Borrower borrower =(Borrower)iter.next();
-			if (borrower.toString() == name){
+			borrower.equals(name);
+			
+			//대출 가능 상태/ 대출 불가능 상태 
 				
 			}
 		
@@ -55,12 +78,12 @@ public class Library {
 			Book book =(Book)iter.next();
 			if (book.getBook() == catalogueNumber){
 				book.getBorrower();
-				borrower.getBook();
+				System.out.println("대출에 성공하였습니다.");
 			}
 		
 		}}
-		System.out.println("대출에 성공하였습니다.");
-		}
+		
+		
 	
 	
 	public void returnOneBook(int catalogueNumber){
@@ -74,7 +97,7 @@ public class Library {
 		}
 	}
 	
-	public void searchBorrower(int borrowerNuber){
+	public void reserve(int borrowerNuber){
 		
 	}
 	
